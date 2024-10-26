@@ -3,6 +3,10 @@ package com.gildedrose;
 public class InventoryItem {
     private final Item item;
 
+    public static InventoryItem create(Item item) {
+        return new InventoryItem(item);
+    }
+
     public InventoryItem(Item item) {
         this.item = item;
     }

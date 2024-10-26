@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 public class InventoryItem {
+    public static final String AGED_BRIE = "Aged Brie";
     private final Item item;
 
     public static InventoryItem create(Item item) {
@@ -20,7 +21,7 @@ public class InventoryItem {
     }
 
     protected void updateQuality() {
-        if (item.name.equals("Aged Brie")) {
+        if (item.name.equals(AGED_BRIE)) {
             increaseQuality();
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             increaseQuality();
@@ -49,7 +50,7 @@ public class InventoryItem {
     }
 
     protected void processExpired() {
-        if (item.name.equals("Aged Brie")) {
+        if (item.name.equals(AGED_BRIE)) {
             increaseQuality();
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             item.quality = 0;

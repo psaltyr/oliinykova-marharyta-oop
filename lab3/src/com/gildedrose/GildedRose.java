@@ -9,55 +9,55 @@ class GildedRose {
 
     public void updateInventory() {
         for (Item item : items) {
-            new InventoryItem(item);
-            updateItem(item);
+            InventoryItem inventoryItem = new InventoryItem(item);
+            updateItem(item, inventoryItem);
         }
     }
 
-    private static void updateItem(Item item) {
-        updateQuality(item);
-        updateExpiration(item);
+    private static void updateItem(Item item, InventoryItem inventoryItem) {
+        updateQuality(item, inventoryItem);
+        updateExpiration(item, inventoryItem);
 
-        if (isExpired(item)) {
-            processExpired(item);
+        if (isExpired(item, inventoryItem)) {
+            processExpired(item, inventoryItem);
         }
     }
 
-    private static void updateQuality(Item item) {
+    private static void updateQuality(Item item, InventoryItem inventoryItem) {
         if (item.name.equals("Aged Brie")) {
-            increaseQuality(item);
+            increaseQuality(item, inventoryItem);
         }
         else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            increaseQuality(item);
+            increaseQuality(item, inventoryItem);
 
                 if (item.sellIn < 11) {
-                    increaseQuality(item);
+                    increaseQuality(item, inventoryItem);
                 }
 
                 if (item.sellIn < 6) {
-                    increaseQuality(item);
+                    increaseQuality(item, inventoryItem);
                 }
             }
         else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         }
-        else decreaseQuality(item);
+        else decreaseQuality(item, inventoryItem);
     }
 
-    private static void updateExpiration(Item item) {
+    private static void updateExpiration(Item item, InventoryItem inventoryItem) {
         if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         }
         item.sellIn--;
     }
 
-    private static boolean isExpired(Item item) {
+    private static boolean isExpired(Item item, InventoryItem inventoryItem) {
         return item.sellIn < 0;
     }
 
-    private static void processExpired(Item item) {
+    private static void processExpired(Item item, InventoryItem inventoryItem) {
         if (item.name.equals("Aged Brie")) {
-            increaseQuality(item);
+            increaseQuality(item, inventoryItem);
         }
         else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             item.quality = 0;
@@ -66,17 +66,17 @@ class GildedRose {
             return;
         }
         else {
-            decreaseQuality(item);
+            decreaseQuality(item, inventoryItem);
         }
     }
 
-    private static void increaseQuality(Item item) {
+    private static void increaseQuality(Item item, InventoryItem inventoryItem) {
         if (item.quality < 50) {
             item.quality = item.quality + 1;
         }
     }
 
-    private static void decreaseQuality(Item item) {
+    private static void decreaseQuality(Item item, InventoryItem inventoryItem) {
         if (item.quality > 0) {
             item.quality = item.quality - 1;
         }

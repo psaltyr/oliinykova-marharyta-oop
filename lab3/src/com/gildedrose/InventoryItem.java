@@ -7,64 +7,64 @@ public class InventoryItem {
         this.item = item;
     }
 
-    protected static void decreaseQuality(Item item, InventoryItem inventoryItem) {
-        if (item.quality > 0) {
-            item.quality = item.quality - 1;
+    public void dailyUpdate(Item item) {
+        updateQuality(item);
+        updateExpiration(item);
+        if (isExpired(item)) {
+            processExpired(item);
         }
     }
 
-    protected static void increaseQuality(Item item, InventoryItem inventoryItem) {
-        if (item.quality < 50) {
-            item.quality = item.quality + 1;
-        }
-    }
-
-    protected static void updateQuality(Item item, InventoryItem inventoryItem) {
+    protected static void updateQuality(Item item) {
         if (item.name.equals("Aged Brie")) {
-            increaseQuality(item, inventoryItem);
+            increaseQuality(item);
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            increaseQuality(item, inventoryItem);
+            increaseQuality(item);
 
             if (item.sellIn < 11) {
-                increaseQuality(item, inventoryItem);
+                increaseQuality(item);
             }
 
             if (item.sellIn < 6) {
-                increaseQuality(item, inventoryItem);
+                increaseQuality(item);
             }
         } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
-        } else decreaseQuality(item, inventoryItem);
+        } else decreaseQuality(item);
     }
 
-    protected static void updateExpiration(Item item, InventoryItem inventoryItem) {
+    protected static void updateExpiration(Item item) {
         if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         }
         item.sellIn--;
     }
 
-    protected static boolean isExpired(Item item, InventoryItem inventoryItem) {
+    protected static boolean isExpired(Item item) {
         return item.sellIn < 0;
     }
 
-    protected static void processExpired(Item item, InventoryItem inventoryItem) {
+    protected static void processExpired(Item item) {
         if (item.name.equals("Aged Brie")) {
-            increaseQuality(item, inventoryItem);
+            increaseQuality(item);
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             item.quality = 0;
         } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         } else {
-            decreaseQuality(item, inventoryItem);
+            decreaseQuality(item);
         }
     }
 
-    public static void dailyUpdate(Item item, InventoryItem inventoryItem) {
-        updateQuality(item, inventoryItem);
-        updateExpiration(item, inventoryItem);
-        if (isExpired(item, inventoryItem)) {
-            processExpired(item, inventoryItem);
+    protected static void increaseQuality(Item item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
+        }
+    }
+
+    protected static void decreaseQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
         }
     }
 }

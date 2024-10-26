@@ -51,9 +51,7 @@ public class InventoryItem {
     }
 
     protected void processExpired() {
-        if (item.name.equals(AGED_BRIE)) {
-            increaseQuality();
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             item.quality = 0;
         } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;

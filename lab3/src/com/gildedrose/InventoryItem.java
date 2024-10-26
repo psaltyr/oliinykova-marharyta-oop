@@ -7,62 +7,62 @@ public class InventoryItem {
         this.item = item;
     }
 
-    public void dailyUpdate(Item item) {
-        updateQuality(item);
-        updateExpiration(item);
-        if (isExpired(item)) {
-            processExpired(item);
+    public void dailyUpdate() {
+        updateQuality();
+        updateExpiration();
+        if (isExpired()) {
+            processExpired();
         }
     }
 
-    protected static void updateQuality(Item item) {
+    protected void updateQuality() {
         if (item.name.equals("Aged Brie")) {
-            increaseQuality(item);
+            increaseQuality();
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            increaseQuality(item);
+            increaseQuality();
 
             if (item.sellIn < 11) {
-                increaseQuality(item);
+                increaseQuality();
             }
 
             if (item.sellIn < 6) {
-                increaseQuality(item);
+                increaseQuality();
             }
         } else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
-        } else decreaseQuality(item);
+        } else decreaseQuality();
     }
 
-    protected static void updateExpiration(Item item) {
+    protected void updateExpiration() {
         if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         }
         item.sellIn--;
     }
 
-    protected static boolean isExpired(Item item) {
+    protected boolean isExpired() {
         return item.sellIn < 0;
     }
 
-    protected static void processExpired(Item item) {
+    protected void processExpired() {
         if (item.name.equals("Aged Brie")) {
-            increaseQuality(item);
+            increaseQuality();
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             item.quality = 0;
         } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         } else {
-            decreaseQuality(item);
+            decreaseQuality();
         }
     }
 
-    protected static void increaseQuality(Item item) {
+    protected void increaseQuality() {
         if (item.quality < 50) {
             item.quality = item.quality + 1;
         }
     }
 
-    protected static void decreaseQuality(Item item) {
+    protected void decreaseQuality() {
         if (item.quality > 0) {
             item.quality = item.quality - 1;
         }

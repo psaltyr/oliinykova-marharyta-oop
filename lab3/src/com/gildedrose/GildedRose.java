@@ -40,9 +40,7 @@ class GildedRose {
         else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         }
-        else if (item.quality > 0) {
-            item.quality = item.quality - 1;
-        }
+        else decreaseQuality(item);
     }
 
     private static void updateExpiration(Item item) {
@@ -64,10 +62,14 @@ class GildedRose {
             item.quality = 0;
         } else {
             if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                if (item.quality > 0) {
-                    item.quality = item.quality - 1;
-                }
+                decreaseQuality(item);
             }
+        }
+    }
+
+    private static void decreaseQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
         }
     }
 

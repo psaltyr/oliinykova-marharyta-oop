@@ -17,9 +17,13 @@ class GildedRose {
         updateQuality(item);
         updateExpiration(item);
 
-        if (item.sellIn < 0) {
+        if (isExpired(item)) {
             processExpired(item);
         }
+    }
+
+    private static boolean isExpired(Item item) {
+        return item.sellIn < 0;
     }
 
     private static void processExpired(Item item) {

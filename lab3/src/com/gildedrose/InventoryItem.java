@@ -59,4 +59,12 @@ public class InventoryItem {
             decreaseQuality(item, inventoryItem);
         }
     }
+
+    public static void dailyUpdate(Item item, InventoryItem inventoryItem) {
+        updateQuality(item, inventoryItem);
+        updateExpiration(item, inventoryItem);
+        if (isExpired(item, inventoryItem)) {
+            processExpired(item, inventoryItem);
+        }
+    }
 }

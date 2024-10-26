@@ -5,6 +5,9 @@ public class InventoryItem {
     private final Item item;
 
     public static InventoryItem create(Item item) {
+        if (item.name.equals(AGED_BRIE)){
+            return new AgedBrie(item);
+        }
         return new InventoryItem(item);
     }
 

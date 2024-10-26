@@ -15,70 +15,12 @@ class GildedRose {
     }
 
     private static void updateItem(Item item, InventoryItem inventoryItem) {
-        updateQuality(item, inventoryItem);
-        updateExpiration(item, inventoryItem);
+        InventoryItem.updateQuality(item, inventoryItem);
+        InventoryItem.updateExpiration(item, inventoryItem);
 
-        if (isExpired(item, inventoryItem)) {
-            processExpired(item, inventoryItem);
+        if (InventoryItem.isExpired(item, inventoryItem)) {
+            InventoryItem.processExpired(item, inventoryItem);
         }
     }
 
-    private static void updateQuality(Item item, InventoryItem inventoryItem) {
-        if (item.name.equals("Aged Brie")) {
-            increaseQuality(item, inventoryItem);
-        }
-        else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            increaseQuality(item, inventoryItem);
-
-                if (item.sellIn < 11) {
-                    increaseQuality(item, inventoryItem);
-                }
-
-                if (item.sellIn < 6) {
-                    increaseQuality(item, inventoryItem);
-                }
-            }
-        else if (!item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
-        }
-        else decreaseQuality(item, inventoryItem);
-    }
-
-    private static void updateExpiration(Item item, InventoryItem inventoryItem) {
-        if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
-        }
-        item.sellIn--;
-    }
-
-    private static boolean isExpired(Item item, InventoryItem inventoryItem) {
-        return item.sellIn < 0;
-    }
-
-    private static void processExpired(Item item, InventoryItem inventoryItem) {
-        if (item.name.equals("Aged Brie")) {
-            increaseQuality(item, inventoryItem);
-        }
-        else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            item.quality = 0;
-        }
-        else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
-        }
-        else {
-            decreaseQuality(item, inventoryItem);
-        }
-    }
-
-    private static void increaseQuality(Item item, InventoryItem inventoryItem) {
-        if (item.quality < 50) {
-            item.quality = item.quality + 1;
-        }
-    }
-
-    private static void decreaseQuality(Item item, InventoryItem inventoryItem) {
-        if (item.quality > 0) {
-            item.quality = item.quality - 1;
-        }
-    }
 }

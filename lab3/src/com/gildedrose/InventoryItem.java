@@ -24,9 +24,7 @@ public class InventoryItem {
     }
 
     protected void updateQuality() {
-        if (item.name.equals(AGED_BRIE)) {
-            increaseQuality();
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             increaseQuality();
 
             if (item.sellIn < 11) {

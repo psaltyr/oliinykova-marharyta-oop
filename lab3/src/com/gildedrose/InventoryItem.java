@@ -2,6 +2,7 @@ package com.gildedrose;
 
 public class InventoryItem {
     public static final String AGED_BRIE = "Aged Brie";
+    public static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private final Item item;
 
     public static InventoryItem create(Item item) {
@@ -24,7 +25,7 @@ public class InventoryItem {
     }
 
     protected void updateQuality() {
-        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.name.equals(BACKSTAGE_PASSES)) {
             increaseQuality();
 
             if (item.sellIn < 11) {
@@ -51,7 +52,7 @@ public class InventoryItem {
     }
 
     protected void processExpired() {
-        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.name.equals(BACKSTAGE_PASSES)) {
             item.quality = 0;
         } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;

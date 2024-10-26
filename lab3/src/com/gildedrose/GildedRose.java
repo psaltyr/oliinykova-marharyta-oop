@@ -12,5 +12,4 @@ class GildedRose {
             InventoryItem.create(item).dailyUpdate();
         }
     }
-
 }

@@ -30,11 +30,13 @@ public class InventoryItem {
     }
 
     protected void updateExpiration() {
-        item.sellIn--;
+        ItemSellInQuality itemInfo = item.itemSellInQuality;
+        itemInfo.sellIn--;
     }
 
     protected boolean isExpired() {
-        return item.sellIn < 0;
+        ItemSellInQuality itemInfo = item.itemSellInQuality;
+        return itemInfo.sellIn < 0;
     }
 
     protected void processExpired() {
@@ -42,14 +44,16 @@ public class InventoryItem {
     }
 
     protected void increaseQuality() {
-        if (item.quality < 50) {
-            item.quality++;
+        ItemSellInQuality itemInfo = item.itemSellInQuality;
+        if (itemInfo.quality < 50) {
+            itemInfo.quality++;
         }
     }
 
     protected void decreaseQuality() {
-        if (item.quality > 0) {
-            item.quality--;
+        ItemSellInQuality itemInfo = item.itemSellInQuality;
+        if (itemInfo.quality > 0) {
+            itemInfo.quality--;
         }
     }
 }

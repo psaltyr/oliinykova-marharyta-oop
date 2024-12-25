@@ -1,6 +1,10 @@
-public class Main {
-    public static void main(String[] args) {
+import org.junit.jupiter.api.Test;
 
+
+public class RemoteControlTest {
+
+    @Test
+    public void testExecuteCommands() {
         VacuumCleaner vacuumCleaner = new VacuumCleaner();
         Light light = new Light();
 
@@ -15,10 +19,12 @@ public class Main {
 
         RemoteControl remoteControl = new RemoteControl();
         remoteControl.addCommand(startDeviceVacuum);
+        remoteControl.addCommand(stopDeviceVacuum);
         remoteControl.addCommand(startDeviceLight);
         remoteControl.addCommand(stopDeviceLight);
-        remoteControl.addCommand(stopDeviceVacuum);
 
         remoteControl.executeCommands();
+
     }
 }
+
